@@ -66,11 +66,11 @@ func InitDAO(db *egorm.Component) dao.UserDAO {
 }
 
 func InitRegistrationEventProducer(q mq.MQ) *event.RegistrationEventProducer {
-	producer, err := q.Producer("user_registration_events")
+	producer, err := event.NewRegistrationEventProducer(q)
 	if err != nil {
 		panic(err)
 	}
-	return event.NewRegistrationEventProducer(producer)
+	return producer
 }
 
 // Handler 暴露出去给 ioc 使用

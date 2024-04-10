@@ -26,8 +26,12 @@ type RegistrationEventProducer struct {
 	producer mq.Producer
 }
 
-func NewRegistrationEventProducer(producer mq.Producer) *RegistrationEventProducer {
-	return &RegistrationEventProducer{producer: producer}
+func NewRegistrationEventProducer(q mq.MQ) (*RegistrationEventProducer, error) {
+	producer, err := q.Producer("user_registration_events")
+	if err != nil {
+		return nil, err
+	}
+	return &RegistrationEventProducer{producer: producer}, nil
 }
 
 func (p *RegistrationEventProducer) Produce(ctx context.Context, evt RegistrationEvent) error {
