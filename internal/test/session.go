@@ -23,7 +23,7 @@ func (s *SessionProvider) UpdateClaims(ctx *gctx.Context, claims session.Claims)
 }
 
 func (s *SessionProvider) RenewAccessToken(ctx *gctx.Context) error {
-	//TODO implement me
+	// TODO implement me
 	panic("implement me")
 }
 

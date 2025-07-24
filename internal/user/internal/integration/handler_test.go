@@ -543,6 +543,7 @@ type HandlerWithAppTestSuite struct {
 
 func (s *HandlerWithAppTestSuite) SetupSuite() {
 	s.db = testioc.InitDB()
+	s.NoError(dao.InitTables(s.db))
 	econf.Set("server", map[string]any{"debug": true})
 	server := egin.Load("server").Build()
 	ctrl := gomock.NewController(s.T())
